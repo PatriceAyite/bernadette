@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/* ─── TOKENS ─────────────────────────────────────────────── */
+:root {
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --c-bg: #000000;
+    --c-surface: #0d0d0d;
+    --c-surface-2: #141414;
+    --c-border: rgba(255, 255, 255, 0.07);
+    --c-border-h: rgba(255, 255, 255, 0.14);
+    --c-text: #ffffff;
+    --c-text-2: rgba(255, 255, 255, 0.55);
+    --c-text-3: rgba(255, 255, 255, 0.3);
+    --c-pink: #e879a0;
+    --c-pink-soft: rgba(232, 121, 160, 0.12);
+    --c-pink-glow: rgba(232, 121, 160, 0.08);
+    --radius-sm: 0.75rem;
+    --radius-md: 1.25rem;
+    --radius-lg: 2rem;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── RESET ──────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font);
+    background: var(--c-bg);
+    color: var(--c-text);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+img,
+video {
+    display: block;
+    max-width: 100%;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+/* ─── SCROLLBAR ──────────────────────────────────────────── */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1f1f1f;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2c2c2c;
+}
+
+/* ─── KEYFRAMES ──────────────────────────────────────────── */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse-dot {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
+@keyframes shimmer-slide {
+    from {
+        transform: skewX(-12deg) translateX(-200%);
+    }
+
+    to {
+        transform: skewX(-12deg) translateX(400%);
+    }
+}
+
+/* ─── UTILITY ────────────────────────────────────────────── */
+.anim-1 {
+    animation: fadeUp 0.65s var(--ease-out) 0.05s both;
+}
+
+.anim-2 {
+    animation: fadeUp 0.65s var(--ease-out) 0.15s both;
+}
+
+.anim-3 {
+    animation: fadeUp 0.65s var(--ease-out) 0.26s both;
+}
+
+.anim-4 {
+    animation: fadeUp 0.65s var(--ease-out) 0.38s both;
+}
+
+/* ─── SECTION DIVIDER ────────────────────────────────────── */
+.section-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--c-border), transparent);
+}

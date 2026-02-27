@@ -1,0 +1,61 @@
+<section class="gallery">
+    <div class="gallery__glow-left"></div>
+    <div class="gallery__glow-right"></div>
+
+    <div class="gallery__container">
+
+        <!-- ── Photos ── -->
+        <div class="gallery__block">
+            <div class="gallery__header" data-aos="fade-up">
+                <div class="gallery__heading-group">
+                    <div class="gallery__tag">Photos</div>
+                    <h2 class="gallery__title">Nos Instants Capturés</h2>
+                </div>
+                <span class="gallery__count">{{ images.length }} photos</span>
+            </div>
+
+            <div class="gallery__grid">
+                <div class="gallery__item" [class.gallery__item--hero]="i === 0"
+                    *ngFor="let img of images; let i = index" data-aos="fade-up" [attr.data-aos-delay]="i * 80">
+                    <img [src]="img.src" alt="Photo souvenir" loading="lazy" />
+                    <div class="gallery__overlay"></div>
+                    <div class="gallery__ring"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Vidéos ── -->
+        <div class="gallery__block">
+            <div class="gallery__header" data-aos="fade-up">
+                <div class="gallery__heading-group">
+                    <div class="gallery__tag">Vidéos</div>
+                    <h2 class="gallery__title">Nos Moments Vivants</h2>
+                </div>
+                <span class="gallery__count">{{ videos.length }} vidéos</span>
+            </div>
+
+            <div class="gallery__grid">
+                <div class="gallery__item" [class.gallery__item--hero]="i === 1"
+                    [class.gallery__item--playing]="playingStates[i]" *ngFor="let vid of videos; let i = index"
+                    data-aos="fade-up" [attr.data-aos-delay]="i * 80" (click)="toggleVideo(i, videoRef)">
+                    <video #videoRef [src]="vid.src" loop muted playsinline></video>
+
+                    <div class="gallery__overlay"></div>
+
+                    <!-- Play/Pause Button overlay -->
+                    <div class="gallery__play-btn">
+                        <svg *ngIf="!playingStates[i]" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                        <svg *ngIf="playingStates[i]" viewBox="0 0 24 24">
+                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                        </svg>
+                    </div>
+
+                    <div class="gallery__ring"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,50 @@
+<section class="hero">
+    <div class="hero__bg"></div>
+    <div class="hero__glow"></div>
+
+    <div class="hero__content">
+        <div class="hero__badge anim-1">
+            <span class="hero__badge-dot"></span>
+            Message spécial pour toi
+        </div>
+
+        <h1 class="hero__title anim-2">
+            Pour toi,<br />Bernadette
+        </h1>
+
+        <p class="hero__sub anim-3">
+            Parce que tu es extraordinaire et que je t'aime beaucoup.
+        </p>
+
+        <div class="hero__btn-wrap anim-4">
+            <button class="hero__btn" (click)="toggleAudio()">
+                <svg *ngIf="!isPlaying" class="hero__btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                </svg>
+                <svg *ngIf="isPlaying" class="hero__btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                </svg>
+                <span>{{ isPlaying ? 'Mettre en pause' : 'Écouter ma voix' }}</span>
+            </button>
+
+            <!-- CTA Arrow & Text -->
+            <div class="hero__hint" *ngIf="!isPlaying">
+                <svg class="hero__hint-arrow" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Hand-drawn style curve pointing left-down -->
+                    <path d="M85 15C70 15 30 25 15 85M15 85L30 80M15 85L22 65" stroke="currentColor" stroke-width="4"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <span class="hero__hint-text">Écoute ça !</span>
+            </div>
+        </div>
+
+        <audio #audioPlayer src="Audio/vocale_bernadette.aac" (ended)="onAudioEnded()"></audio>
+    </div>
+
+    <div class="hero__scroll">
+        <span>Défiler</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14M5 12l7 7 7-7" />
+        </svg>
+    </div>
+</section>

@@ -1,0 +1,267 @@
+/* ─── HERO ───────────────────────────────────────────────── */
+.hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #000;
+    isolation: isolate;
+}
+
+/* Cadrillage background */
+.hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+/* Radial vignette over the grid */
+.hero__bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% -10%, transparent 20%, #000 80%);
+}
+
+/* Top-centre glow */
+.hero__glow {
+    position: absolute;
+    top: -180px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(232, 121, 160, 0.22) 0%, transparent 60%);
+    filter: blur(40px);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ─── CONTENT ────────────────────────────────────────────── */
+.hero__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    max-width: 860px;
+}
+
+/* Badge */
+.hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.3rem 1rem 0.3rem 0.65rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(10px);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 2.25rem;
+}
+
+.hero__badge-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--c-pink);
+    animation: pulse-dot 1.8s ease-in-out infinite;
+}
+
+/* Title */
+.hero__title {
+    font-size: clamp(3rem, 9vw, 6.5rem);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 1.0;
+    margin-bottom: 1.4rem;
+    background: linear-gradient(160deg, #fff 40%, rgba(255, 255, 255, 0.5) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Subtitle */
+.hero__sub {
+    font-size: clamp(1rem, 2.2vw, 1.15rem);
+    font-weight: 400;
+    color: var(--c-text-2);
+    max-width: 420px;
+    line-height: 1.75;
+    margin-bottom: 2.75rem;
+}
+
+/* ─── CTA BUTTON ─────────────────────────────────────────── */
+.hero__btn-wrap {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.hero__btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    height: 52px;
+    padding: 0 2rem;
+    border-radius: 12px;
+    background: linear-gradient(180deg, #fff 0%, #f0f0f0 100%);
+    color: #000;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    transition: all 300ms var(--ease-out);
+}
+
+.hero__btn-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.hero__btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(255, 255, 255, 0.4), 0 0 0 4px rgba(232, 121, 160, 0.25);
+    background: #fff;
+}
+
+/* CTA Hint (Hand-drawn arrow + text) */
+.hero__hint {
+    position: absolute;
+    left: calc(100% + 1rem);
+    top: -5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--c-pink);
+    pointer-events: none;
+    white-space: nowrap;
+    animation: hint-bounce 2.5s ease-in-out infinite;
+    z-index: 20;
+}
+
+.hero__hint-arrow {
+    width: 100px;
+    height: 100px;
+    filter: drop-shadow(0 0 10px rgba(232, 121, 160, 0.4));
+    transform: rotate(5deg);
+}
+
+.hero__hint-text {
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-top: -1rem;
+    background: linear-gradient(135deg, var(--c-pink) 0%, #fff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+@keyframes hint-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+
+    50% {
+        transform: translateY(-12px) rotate(-3deg);
+    }
+}
+
+@media (max-width: 900px) {
+    .hero__hint {
+        left: 50%;
+        top: calc(100% + 2rem);
+        transform: translateX(-50%);
+        animation: hint-bounce-mobile 2.5s ease-in-out infinite;
+    }
+
+    .hero__hint-arrow {
+        width: 80px;
+        height: 80px;
+        transform: rotate(110deg);
+    }
+
+    @keyframes hint-bounce-mobile {
+
+        0%,
+        100% {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        50% {
+            transform: translateX(-50%) translateY(10px);
+        }
+    }
+}
+
+
+.hero__btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.25);
+    transform: skewX(-12deg) translateX(-200%);
+}
+
+.hero__btn:hover::after {
+    transform: skewX(-12deg) translateX(400%);
+    transition: transform 700ms ease;
+}
+
+/* Scroll hint arrow */
+.hero__scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--c-text-3);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    animation: fadeUp 1s 1.2s both;
+}
+
+.hero__scroll svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────── */
+@media (max-width: 600px) {
+    .hero__title {
+        font-size: 2.8rem;
+        letter-spacing: -0.04em;
+    }
+
+    .hero__glow {
+        width: 320px;
+        height: 320px;
+        top: -100px;
+    }
+}
